@@ -25,7 +25,7 @@ If you're streaming a Pokemon game and like to display your current party on you
  5. In VBA-RR, open Tools > Lua Scripting > New Lua Script Window...
  6. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run
  7. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
- 8. The Lua script output window should display all slot changes. As a bonus, you can press "Q" to see Pokemon EV/IV values in your party
+ 8. The Lua script output window should display all slot changes in text form. As a bonus, you can press "Q" to see Pokemon EV/IV values in your party
 
 ### Desmume Setup
 
@@ -38,8 +38,10 @@ If you're streaming a Pokemon game and like to display your current party on you
  * What about Pokemon in the PC boxes?
      * These are not supported yet
  * Why am I seeing strange behaviour? (missing Pokemon, fast switching, not updating properly)
-     * Reading game memory directly is not always perfect. Try switch party members around, to see if the issue is corrected
+     * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
 
 ### Credits
 
-A huge thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work! http://forums.pokemonspeedruns.com/viewtopic.php?t=314
+ * A huge thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work! http://forums.pokemonspeedruns.com/viewtopic.php?t=314
+ * A huge thank you to the 3DS modding community for their work on CFW, BootNTR, PKMN-NTR and others!
+ * A huge thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
