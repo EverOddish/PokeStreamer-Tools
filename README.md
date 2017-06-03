@@ -22,12 +22,32 @@ If you're streaming a Pokemon game and like to display your current party on you
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
  4. Copy `auto_layout_gen3_tables.lua` to the same directory
- 5. In VBA-RR, open Tools > Lua Scripting > New Lua Script Window...
- 6. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run
- 7. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
- 8. The Lua script output window should display all slot changes in text form. As a bonus, you can press "Q" to see Pokemon EV/IV values in your party
+ 5. Open VBA-RR and your Pokemon ROM, and load your save file
+ 6. In VBA-RR, open Tools > Lua Scripting > New Lua Script Window...
+ 7. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run
+ 8. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
+ 9. The Lua script output window should display all slot changes in text form. As a bonus, you can press "Q" to see Pokemon EV/IV values in your party
 
 ### Desmume Setup
+
+ 1. Download the latest release of Desmume: http://desmume.org/download/
+ 2. Make note of whether you downloaded 32-bit (x86) or 64-bit (x86-64) Desmume
+ 3. Download the Lua DLL that matches your Desmume: https://sourceforge.net/projects/luabinaries/files/5.1.5/Windows%20Libraries/Dynamic/
+      * `lua-5.1.5_Win32_dll14_lib.zip` for x86 Desmume
+      * `lua-5.1.5_Win64_dll14_lib.zip` for x86-64 Desmume
+ 4. Extract `lua5.1.dll` from the .zip file to the same folder where your `DeSmuME_0.9.11_x86.exe` or `DeSmuME_0.9.11_x64.exe` is
+ 5. Rename `lua5.1.dll` to `lua51.dll`
+ 6. Edit the first line of `auto_layout_gen4_gen5.lua` file from this repository with your favourite text editor and set `game` to the appropriate value, as described in the file
+ 7. Copy `auto_layout_gen4_gen5.lua` to the same directory that contains your sprite image files.
+      * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`)
+      * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
+      * The script expects a Pokeball image to be named `000.png`
+ 8. Copy `auto_layout_gen4_gen5_tables.lua` to the same directory
+ 9. Open Desmume and your Pokemon ROM, and load your save file
+ 10. In Desmume, open Tools > Lua Scripting > New Lua Script Window...
+ 11. Click Browse... and locate `auto_layout_gen4_gen5.lua` on your computer, open it, and click Run
+ 12. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
+ 13. The Lua script output window should display all slot changes in text form.
 
 ### PKMN-NTR Setup
 
@@ -39,6 +59,8 @@ If you're streaming a Pokemon game and like to display your current party on you
      * These are not supported yet
  * Why am I seeing strange behaviour? (missing Pokemon, fast switching, not updating properly)
      * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
+ * What if I'm on an operating system whose emulator does not support Lua scripting? (for example, Desmume on Linux)
+     * I'm sorry, you'll have to ask the maintainers of that emulator!
 
 ### Credits
 
