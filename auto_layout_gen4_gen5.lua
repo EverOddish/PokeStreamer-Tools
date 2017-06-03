@@ -596,7 +596,7 @@ function fn()
                                 print("Copy " .. src .. " to " .. dst)
                                 os.execute("del " .. dst)
                                 os.execute("copy /Y " .. src .. " " .. dst)
-                                os.execute("copy /b " .. dst .. " +,,")
+                                os.execute("copy /b " .. dst .. "+,, " .. dst)
                             end
                         end
                     end
@@ -607,7 +607,7 @@ function fn()
                         print("Copy " .. src .. " to " .. dst)
                         os.execute("del " .. dst)
                         os.execute("copy /Y " .. src .. " " .. dst)
-                        os.execute("copy /b " .. dst .. " +,,")
+                        os.execute("copy /b " .. dst .. "+,, " .. dst)
                         is_zero_hp[q] = 1
                     end
                 end

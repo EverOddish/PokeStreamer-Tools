@@ -280,7 +280,7 @@ if current_time - last_check > 1 then
             print("Copy " .. s .. " to " .. d)
             os.execute("del " .. d)
             os.execute("copy /Y " .. s .. " " .. d)
-            os.execute("copy /b " .. d .. " +,,")
+            os.execute("copy /b " .. d .. "+,, " .. d)
         end)
         coroutine.resume(co, src, dst)
     end
