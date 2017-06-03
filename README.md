@@ -57,7 +57,7 @@ If you're streaming a Pokemon game and like to display your current party on you
  3. Install and run PKMN-NTR: https://github.com/drgoku282/PKMN-NTR/wiki
  4. Click on Tools > Event Handler
  5. Edit the event actions with a command specific to the directories on your computer, such as:
-      * `del C:\\Users\\username\\sprites\\p###SLOT###.png & copy /Y C:\\Users\\username\\sprites\\###NAME###.png C:\\Users\\username\\sprites\\p###SLOT###.png & copy /b C:\\Users\\username\\sprites\\p###SLOT###.png+,, C:\\Users\\username\\sprites\\p###SLOT###.png`
+      * `del C:\Users\username\sprites\p###SLOT###.png & copy /Y C:\Users\username\sprites\###NAME###.png C:\Users\username\sprites\p###SLOT###.png & copy /b C:\Users\username\sprites\p###SLOT###.png+,, C:\Users\username\sprites\p###SLOT###.png`
  6. Click Apply and close the window
  7. Go back to the Read/Write tab, enter the IP address of your 3DS and click Connect
  8. Click Start Polling to start monitoring party data
@@ -77,6 +77,8 @@ If you're streaming a Pokemon game and like to display your current party on you
      * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
  * What if I'm on an operating system whose emulator does not support Lua scripting? (for example, Desmume on Linux)
      * I'm sorry, you'll have to ask the maintainers of that emulator!
+ * Do these scripts work with ROM hacks, such as Drayano's Storm Silver, etc.?
+     * Yes!
  * What if my question isn't answered here?
      * Tweet [@EverOddish](https://twitter.com/everoddish)
 
