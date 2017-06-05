@@ -55,11 +55,11 @@ If you're streaming a Pokemon game and like to display your current party on you
       * This process can take up to 2 hours, so be sure you have spare time
  2. Install BootNTR Selector on your 3DS: https://gbatemp.net/threads/release-bootntr-selector.432911/
  3. Install and run PKMN-NTR: https://github.com/drgoku282/PKMN-NTR/wiki
- 4. Click on Tools > Event Handler
- 5. Edit the event actions with a command specific to the directories on your computer, such as:
+ 4. Enter the IP address of your 3DS and click Connect
+ 5. Click on Tools > Event Handler
+ 6. Edit the event actions with a command specific to the directories on your computer, such as:
       * `del C:\Users\username\sprites\p###SLOT###.png & copy /Y C:\Users\username\sprites\###NAME###.png C:\Users\username\sprites\p###SLOT###.png & copy /b C:\Users\username\sprites\p###SLOT###.png+,, C:\Users\username\sprites\p###SLOT###.png`
- 6. Click Apply and close the window
- 7. Go back to the Read/Write tab, enter the IP address of your 3DS and click Connect
+ 7. Click Apply and close the window
  8. Click Start Polling to start monitoring party data
  9. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
 
