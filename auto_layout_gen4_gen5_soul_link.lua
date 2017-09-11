@@ -2,7 +2,7 @@
 -- Modified by EverOddish for automatic image updates
 -----------
 -- 1 = Diamond/Pearl, 2 = HeartGold/SoulSilver, 3 = Platinum, 4 = Black, 5 = White, 6 = Black 2, 7 = White 2
-local game = 2
+local game = 2 
 -----------
 
 local gen
@@ -372,7 +372,22 @@ function getNatClr(a)
 	end
 	return color
 end
- 
+
+function file_exists(file)
+  local f = io.open(file, "rb")
+  if f then f:close() end
+  return f ~= nil
+end
+
+function lines_from(file)
+  if not file_exists(file) then return {} end
+  lines = {}
+  for line in io.lines(file) do 
+    lines[#lines + 1] = line
+  end
+  return lines
+end 
+
 function fn()
 	--menu()
     current_time = os.time()
@@ -567,6 +582,15 @@ function fn()
             -- For each party slot
             --print(party)
             --print(last_party)
+            link_data = lines_from("soul_links.txt")
+            links = {}
+            for k,v in pairs(link_data) do
+                first_pokemon = string.match(v, "%a+-")
+                first_pokemon = first_pokemon:sub(1, -2)
+                second_pokemon = string.match(v, "-%a+")
+                second_pokemon = string.sub(second_pokemon, 2)
+                links[first_pokemon] = second_pokemon
+            end
             for q = 1, 6 do
                 p = party[q]
                 lp = last_party[q]
@@ -594,6 +618,18 @@ function fn()
                                 os.execute("del " .. dst)
                                 os.execute("copy /Y " .. src .. " " .. dst)
                                 os.execute("copy /b " .. dst .. "+,, " .. dst)
+                                if links[string.lower(pokestr)] ~= nil then
+                                    if src ~= "000.png" then
+                                        src2 = links[string.lower(pokestr)] .. ".png"
+                                    else
+                                        src2 = src
+                                    end
+                                    dst2 = "p" .. q .. "b.png"
+                                    print("Copy " .. src2 .. " to " .. dst2)
+                                    os.execute("del " .. dst2)
+                                    os.execute("copy /Y " .. src2 .. " " .. dst2)
+                                    os.execute("copy /b " .. dst2 .. "+,, " .. dst2)
+                                end
                             end
                         end
                     end
@@ -605,6 +641,11 @@ function fn()
                         os.execute("del " .. dst)
                         os.execute("copy /Y " .. src .. " " .. dst)
                         os.execute("copy /b " .. dst .. "+,, " .. dst)
+                        dst2 = "p" .. q .. "b.png"
+                        print("Copy " .. src .. " to " .. dst2)
+                        os.execute("del " .. dst2)
+                        os.execute("copy /Y " .. src .. " " .. dst2)
+                        os.execute("copy /b " .. dst2 .. "+,, " .. dst2)
                         is_zero_hp[q] = 1
                     end
                 end

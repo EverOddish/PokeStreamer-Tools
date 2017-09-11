@@ -2,7 +2,9 @@
 -- Modified by EverOddish for automatic image updates
 -----------
 -- 1 = Diamond/Pearl, 2 = HeartGold/SoulSilver, 3 = Platinum, 4 = Black, 5 = White, 6 = Black 2, 7 = White 2
-local game = 2
+local game = 2 
+-- Change this to your Twitch username.
+local username = 'EverOddish'
 -----------
 
 local gen
@@ -378,6 +380,7 @@ function fn()
     current_time = os.time()
     if current_time - last_check > 1 then
         party = {}
+        url = "https://everoddish.com/data/post.php?username=" .. username .. "&"
         for q = 1, 6 do
             submode = q
             gen = getGen()
@@ -549,7 +552,15 @@ function fn()
                 if pokemon[pokemonID + 1] ~= "none" then
                     tbl[1] = pokemonID
                     tbl[2] = hpstat
+
                 end
+
+                url = url .. "p" .. q .. "=" .. pokemon[pokemonID + 1] .. "_" .. pokemonID .. "_" .. pokemon[pokemonID + 1] .. "_" .. abilities[ability + 1]:gsub(" ", "-") .. "_" .. nature[nat + 1] .. "_" .. hpev .. "-" .. atkev .. "-" .. defev .. "-" .. spaev .. "-" .. spdev .. "-" .. speev .. "_" .. hpiv .. "-" .. atkiv .. "-" .. defiv .. "-" .. spaiv .. "-" .. spdiv .. "-" .. speiv .. "_" .. movename[move[1] + 1]:gsub(" ", "-") .. "_" .. movename[move[2] + 1]:gsub(" ", "-") .. "_" .. movename[move[3] + 1]:gsub(" ", "-") .. "_" .. movename[move[4] + 1]:gsub(" ", "-") .. "_" .. level .. "_" .. friendship_or_steps_to_hatch
+
+                if 6 ~= q then
+                    url = url .. "&"
+                end
+
                 party[q] = tbl
             end
         end
@@ -615,8 +626,24 @@ function fn()
                 last_party[k] = v
             end
         end
+
+        -- Update extension
+        --print(url)
+
+        url_file = io.open("url.txt", "w")
+        io.output(url_file)
+        io.write(url)
+        io.close(url_file)
+
         last_check = current_time
     end
 end
+
+cmd = ":start\r\npowershell -Command (New-Object System.Net.WebClient).DownloadFile((Get-Content url.txt),'out.txt')\r\ntimeout /t 2 /nobreak > NUL\r\ngoto start"
+bat_file = io.open("update.bat", "w")
+io.output(bat_file)
+io.write(cmd)
+io.close(bat_file)
+os.execute("start update.bat")
 
 gui.register(fn)
