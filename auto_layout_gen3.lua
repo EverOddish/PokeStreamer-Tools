@@ -237,7 +237,9 @@ if current_time - last_check > 1 then
     if movename4==nil then movename4="none" end
 
     speciesname=pokemontbl[species]
-	if speciesname==nil then speciesname="none" end
+    if speciesname==nil then speciesname="none" end
+    
+    level=mbyte(start+84)
 
     if "none" ~= speciesname then
         party_member = {}
@@ -247,7 +249,7 @@ if current_time - last_check > 1 then
         --party_member["ability"] = abilities[ability + 1] 
         party_member["ability"] = "--"
         party_member["nature"] = naturename[nature+1]
-        --party_member["level"] = level
+        party_member["level"] = level
         party_member["hiddenpower"] = typeorder[hidpowtype+1]
         party_member["ivs"] = hpiv .. "/" .. atkiv .. "/" .. defiv .. "/" .. spatkiv .. "/" .. spdefiv .. "/" .. spdiv
         party_member["evs"] = hpev .. "/" .. atkev .. "/" .. defev .. "/" .. spatkev .. "/" .. spdefev .. "/" .. spdev
