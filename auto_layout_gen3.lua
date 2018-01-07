@@ -35,7 +35,7 @@ local new_party = ""
  
 local last_check = 0
 local last_party = {0, 0, 0, 0, 0, 0}
-local last_levels = {0, 0, 0, 0, 0, 0}
+local last_levels = {-1, -1, -1, -1, -1, -1}
 local print_ivs = 0
 
 --for different game versions
