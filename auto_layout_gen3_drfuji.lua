@@ -48,6 +48,7 @@ local new_party = ""
  
 local last_check = 0
 local last_party = {0, 0, 0, 0, 0, 0}
+local last_levels = {0, 0, 0, 0, 0, 0}
 local print_ivs = 0
 
 local gamename={"Ruby/Sapphire U", "Emerald U", "FireRed/LeafGreen U", "Ruby/Sapphire J", "Emerald J", "FireRed/LeafGreen J (1360)"}
@@ -314,6 +315,23 @@ if current_time - last_check > 1 then
             os.execute("copy /b " .. d .. "+,, " .. d)
         end)
         coroutine.resume(co, src, dst)
+    end
+
+    if last_levels[slot] ~= level then        
+        if speciesname == "none" then
+            level_text = ""
+            print("Removed level for slot " .. slot)
+        else
+            level_text = "Lv. " .. level
+            print("Slot " .. slot .. " is now " .. level_text)
+        end
+
+        last_levels[slot] = level
+
+        level_file = io.open("level" .. slot .. ".txt", "w+")
+        io.output(level_file)
+        io.write(level_text)
+        io.close(level_file)
     end
 
     if print_ivs == 1 then
