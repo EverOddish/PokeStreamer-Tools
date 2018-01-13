@@ -48,6 +48,7 @@ local new_party = ""
  
 local last_check = 0
 local last_party = {0, 0, 0, 0, 0, 0}
+local last_levels = {-1, -1, -1, -1, -1, -1}
 local print_ivs = 0
 
 local gamename={"Ruby/Sapphire U", "Emerald U", "FireRed/LeafGreen U", "Ruby/Sapphire J", "Emerald J", "FireRed/LeafGreen J (1360)"}
@@ -244,7 +245,9 @@ if current_time - last_check > 1 then
     if movename4==nil then movename4="none" end
 
     speciesname=pokemontbl[species]
-	if speciesname==nil then speciesname="none" end
+    if speciesname==nil then speciesname="none" end
+    
+    level=mbyte(start+84)
 
     if "none" ~= speciesname then
         party_member = {}
@@ -254,7 +257,7 @@ if current_time - last_check > 1 then
         --party_member["ability"] = abilities[ability + 1] 
         party_member["ability"] = "--"
         party_member["nature"] = naturename[nature+1]
-        --party_member["level"] = level
+        party_member["level"] = level
         party_member["hiddenpower"] = typeorder[hidpowtype+1]
         party_member["ivs"] = hpiv .. "/" .. atkiv .. "/" .. defiv .. "/" .. spatkiv .. "/" .. spdefiv .. "/" .. spdiv
         party_member["evs"] = hpev .. "/" .. atkev .. "/" .. defev .. "/" .. spatkev .. "/" .. spdefev .. "/" .. spdev
@@ -282,7 +285,7 @@ if current_time - last_check > 1 then
 
         party[slot] = party_member
 
-        url = url .. "p" .. slot .. "=" .. party_member["id"] .. "_" .. (species-25) .. "_" .. party_member["id"] .. "__" .. party_member["nature"] .. "_" .. hpev .. "-" .. atkev .. "-" .. defev .. "-" .. spatkev .. "-" .. spdefev .. "-" .. spdev .. "_" .. hpiv .. "-" .. atkiv .. "-" .. defiv .. "-" .. spatkiv .. "-" .. spdefiv .. "-" .. spdiv .. "_" .. party_member["move1"]:gsub(" ", "-") .. "_" .. party_member["move2"]:gsub(" ", "-") .. "_" .. party_member["move3"]:gsub(" ", "-") .. "_" .. party_member["move4"]:gsub(" ", "-") .. "_0_0"
+        url = url .. "p" .. slot .. "=" .. party_member["id"] .. "_" .. (species-25) .. "_" .. party_member["id"] .. "__" .. party_member["nature"] .. "_" .. hpev .. "-" .. atkev .. "-" .. defev .. "-" .. spatkev .. "-" .. spdefev .. "-" .. spdev .. "_" .. hpiv .. "-" .. atkiv .. "-" .. defiv .. "-" .. spatkiv .. "-" .. spdefiv .. "-" .. spdiv .. "_" .. party_member["move1"]:gsub(" ", "-") .. "_" .. party_member["move2"]:gsub(" ", "-") .. "_" .. party_member["move3"]:gsub(" ", "-") .. "_" .. party_member["move4"]:gsub(" ", "-") .. "_" .. level .. "_0"
 
         if 6 ~= slot then
             url = url .. "&"
@@ -312,6 +315,23 @@ if current_time - last_check > 1 then
             os.execute("copy /b " .. d .. "+,, " .. d)
         end)
         coroutine.resume(co, src, dst)
+    end
+
+    if last_levels[slot] ~= level then        
+        if speciesname == "none" then
+            level_text = ""
+            print("Removed level for slot " .. slot)
+        else
+            level_text = "Lv. " .. level
+            print("Slot " .. slot .. " is now " .. level_text)
+        end
+
+        last_levels[slot] = level
+
+        level_file = io.open("level" .. slot .. ".txt", "w+")
+        io.output(level_file)
+        io.write(level_text)
+        io.close(level_file)
     end
 
     if print_ivs == 1 then
