@@ -15,8 +15,6 @@ If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon r
  * An emulator with Lua scripting support
      * VBA-RR (for Gen 3 games)
      * Desmume (for Gen 4/Gen 5 games)
- * A 3DS with custom firmware (CFW)
-     * BootNTR and PKMN-NTR (for Gen 6/Gen 7 games)
 
 ### VBA-RR Setup
 
@@ -27,6 +25,7 @@ If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon r
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
  4. Copy `auto_layout_gen3_tables.lua` to the same directory
+      * Note: The `auto_layout_gen3_tables.lua` file still needs to exist in the same directory, but you do not need to open it in VBA-RR
  5. Open VBA-RR and your Pokemon ROM, and load your save file
  6. In VBA-RR, open Tools > Lua Scripting > New Lua Script Window...
  7. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run
@@ -55,44 +54,34 @@ If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon r
  8. Open Desmume and your Pokemon ROM, and load your save file
  9. In Desmume, open Tools > Lua Scripting > New Lua Script Window...
  10. Click Browse... and locate `auto_layout_gen4_gen5.lua` (or other chosen version of the script) on your computer, open it, and click Run
+      * Note: The `auto_layout_gen4_gen5_tables.lua` file still needs to exist in the same directory, but you do not need to open it in Desmume
  11. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
  12. The Lua script output window should display all slot changes in text form.
-
-### PKMN-NTR Setup
-
- 1. Install custom firmware (CFW) on your 3DS: https://3ds.guide/
-      * This process can take up to 2 hours, so be sure you have spare time
- 2. Install BootNTR Selector on your 3DS: https://gbatemp.net/threads/release-bootntr-selector.432911/
- 3. Install and run PKMN-NTR: https://github.com/drgoku282/PKMN-NTR/wiki
- 4. Enter the IP address of your 3DS and click Connect
- 5. Click on Tools > Event Handler
- 6. Edit the event actions with a command specific to the directories on your computer, such as:
-      * `del C:\Users\username\sprites\p###SLOT###.png & copy /Y C:\Users\username\sprites\###NAME###.png C:\Users\username\sprites\p###SLOT###.png & copy /b C:\Users\username\sprites\p###SLOT###.png+,, C:\Users\username\sprites\p###SLOT###.png`
- 7. Click Apply and close the window
- 8. Click Start Polling to start monitoring party data
- 9. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
 
 ### FAQ
 
  * Where can I find Pokemon sprite files?
+     * https://drive.google.com/file/d/0Bx5dwDibVv9PNlJkWC0yajFrRms/view
+     * https://drive.google.com/file/d/0Bx5dwDibVv9PX0dTOC1vU2xKdXc/view
      * https://veekun.com/dex/downloads
      * http://pkmn.net/?action=content&page=viewpage&id=8644
      * https://www.pkparaiso.com/xy/sprites_pokemon.php
  * What about Gen 1 and Gen 2 games?
-     * These games are not supported yet
+     * These games are not supported
  * What about Pokemon in the PC boxes?
-     * These are not supported yet
+     * These are not supported
  * Why am I seeing strange behaviour? (missing Pokemon, fast switching, not updating properly)
      * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
  * What if I'm on an operating system whose emulator does not support Lua scripting? (for example, Desmume on Linux)
      * I'm sorry, you'll have to ask the maintainers of that emulator!
  * Do these scripts work with ROM hacks, such as Drayano's Storm Silver, etc.?
      * Yes!
+ * Do these work on fan-made games?
+     * No!
  * What if my question isn't answered here?
      * Tweet [@EverOddish](https://twitter.com/everoddish)
 
 ### Credits
 
  * A huge thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work! http://forums.pokemonspeedruns.com/viewtopic.php?t=314
- * A huge thank you to the 3DS modding community for their work on CFW, BootNTR, PKMN-NTR and others!
  * A huge thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
