@@ -307,6 +307,8 @@ function getPidAddr()
 			return 0x0226AD14 + 0xDC*(submode-1)
 		else -- mode 1
 			return 0x022349D4 + 0xDC*(submode-1) 
+            -- Spanish Version
+            --return 0x02234974 + 0xDC*(submode-1)
 		end
 	elseif game == 6 then --Black 2
 		if mode == 5 then
