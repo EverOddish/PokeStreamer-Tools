@@ -15,10 +15,11 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
 
 ### Requirements
 
- * Windows operating system
+ * Windows operating system (in the case of VBA-RR or Desmume)
  * An emulator with Lua scripting support
      * VBA-RR (for Gen 3 games)
      * Desmume (for Gen 4/Gen 5 games)
+ * A version of Citra with Python scripting support
 
 ### VBA-RR Setup
 
