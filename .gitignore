@@ -1,1 +1,4 @@
 *.swp
+*.pyc
+sos_count.txt
+__pycache__/
