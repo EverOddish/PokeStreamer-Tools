@@ -9,6 +9,10 @@ If you're streaming a Pokemon game and like to display your current party on you
 
 If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon real-time stats on your stream, you can use the appropriate script to send live data to the server that will be displayed to users. Currently, this is only supported for the Gen 4/5 script.
 
+## SOS Counter Tool
+
+If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will display the current chain length. It will also write the value to a text file that can be monitored by streaming software and displayed on stream layouts. Note: This requires a version of Citra that supports Python scripting.
+
 ### Requirements
 
  * Windows operating system
