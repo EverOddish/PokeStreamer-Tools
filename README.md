@@ -89,3 +89,4 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
 
  * A huge thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work! http://forums.pokemonspeedruns.com/viewtopic.php?t=314
  * A huge thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
+ * A huge thank you to the contributors at https://projectpokemon.org for their reverse engineering of Pokemon games
