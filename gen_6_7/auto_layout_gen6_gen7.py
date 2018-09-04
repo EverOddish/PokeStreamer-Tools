@@ -1,6 +1,8 @@
 import struct
 import curses
 import time
+import re
+import http.client
 
 from citra import Citra
 
@@ -11,6 +13,9 @@ USUM = 4
 
 # Change this value to your desired game
 current_game = ORAS
+
+# Change this value to your Twitch username to use the Dr. Fuji Twitch Extension
+twitch_username = 'EverOddish'
 
 # -----------------------------------------------------------------------------
 
@@ -90,7 +95,7 @@ species = [
 "Xurkitree", "Celesteela", "Kartana", "Guzzlord", "Necrozma", "Magearna", "Marshadow", "Poipole", "Naganadel", "Stakataka",
 "Blacephalon", "Zeraora"]
 
-moves = ["———", "Pound", "Karate Chop", "Double Slap", "Comet Punch", "Mega Punch", "Pay Day", "Fire Punch", "Ice Punch", "Thunder Punch",
+moves = ["--", "Pound", "Karate Chop", "Double Slap", "Comet Punch", "Mega Punch", "Pay Day", "Fire Punch", "Ice Punch", "Thunder Punch",
 "Scratch", "Vice Grip", "Guillotine", "Razor Wind", "Swords Dance", "Cut", "Gust", "Wing Attack", "Whirlwind", "Fly", "Bind", "Slam",
 "Vine Whip", "Stomp", "Double Kick", "Mega Kick", "Jump Kick", "Rolling Kick", "Sand Attack", "Headbutt", "Horn Attack", "Fury Attack",
 "Horn Drill", "Tackle", "Body Slam", "Wrap", "Take Down", "Thrash", "Double-Edge", "Tail Whip", "Poison Sting", "Twineedle", "Pin Missile",
@@ -264,9 +269,11 @@ class Pokemon:
         else:
             raise ValueError()
 
+    def species_num(self):
+        return struct.unpack("<H", self.raw_data[0x8:0xA])[0]
+
     def species(self):
-        species_num = struct.unpack("<H", self.raw_data[0x8:0xA])[0]
-        return species[species_num]
+        return species[self.species_num()]
 
     def held_item_num(self):
         return struct.unpack("<H", self.raw_data[0xA:0xC])[0]
@@ -389,7 +396,19 @@ def run():
                 win.clear()
                 win.addstr("PokeStreamer-Tools Auto-Layout Tool - Gen 6/7\n\n")
                 party = read_party(c)
+
+                drfuji_query = ""
+                if len(twitch_username) > 0:
+                    drfuji_query = "/data/post.php?username=" + twitch_username + "&"
+                    slot = 1
+
                 for pkmn in party:
+
+                    if len(drfuji_query) > 0:
+                        drfuji_query += "p" + str(slot) + "=" + pkmn.species() + "_" + str(pkmn.species_num()) + "_" + pkmn.species() + "_" + pkmn.ability() + "_" + pkmn.nature() + "_" + pkmn.ev_hp() + "-" + pkmn.ev_attack() + "-" + pkmn.ev_defense() + "-" + pkmn.ev_sp_attack() + "-" + pkmn.ev_sp_defense() + "-" + pkmn.ev_speed() + "_" + pkmn.iv_hp() + "-" + pkmn.iv_attack() + "-" + pkmn.iv_defense() + "-" + pkmn.iv_sp_attack() + "-" + pkmn.iv_sp_defense() + "-" + pkmn.iv_speed() + "_" + pkmn.move_1() + "_" + pkmn.move_2() + "_" + pkmn.move_3() + "_" + pkmn.move_4() + "_" + pkmn.level() + "_" + pkmn.friendship()
+                        drfuji_query += "&"
+                        slot += 1
+
                     win.addstr("Species: " + pkmn.species() + "  Ability: " + pkmn.ability() + "  Nature: " + pkmn.nature() + "\n")
                     win.addstr("Moves: " + pkmn.move_1() + ", " + pkmn.move_2() + ", " + pkmn.move_3() + ", " + pkmn.move_4() + "\n")
                     win.addstr("EVs: " + pkmn.ev_hp() + "/" + pkmn.ev_attack() + "/" + pkmn.ev_defense() + "/" + pkmn.ev_sp_attack() + "/" + pkmn.ev_sp_defense() + "/" + pkmn.ev_speed() + "  ")
@@ -398,6 +417,15 @@ def run():
                     win.addstr("Level: " + pkmn.level() + "  Friendship: " + pkmn.friendship() + "\n")
                     win.addstr("\n")
                 win.refresh()
+
+                drfuji_query = drfuji_query[:-1]
+                drfuji_query = re.sub(" ", "-", drfuji_query)
+                drfuji_query = re.sub("-", "%2D", drfuji_query)
+                #print(drfuji_query)
+                conn = http.client.HTTPSConnection("everoddish.com")
+                conn.request("GET", drfuji_query)
+                resp = conn.getresponse()
+                conn.close()
 
                 time.sleep(1)
         else:
