@@ -10,7 +10,7 @@ SM = 3
 USUM = 4
 
 # Change this value to your desired game
-current_game = USUM
+current_game = ORAS
 
 # -----------------------------------------------------------------------------
 
@@ -352,7 +352,7 @@ def get_party_address():
     if XY == current_game:
         return 0x8CE1CF8
     elif ORAS == current_game:
-        return 0x8CFB26C
+        return 0x8CF727C
     elif SM == current_game:
         return 0x34195E10
     elif USUM == current_game:
