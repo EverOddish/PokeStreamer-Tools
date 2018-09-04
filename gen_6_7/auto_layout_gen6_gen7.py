@@ -398,7 +398,7 @@ def run():
                 party = read_party(c)
 
                 drfuji_query = ""
-                if len(twitch_username) > 0:
+                if len(twitch_username) > 0 and "EverOddish" not in twitch_username:
                     drfuji_query = "/data/post.php?username=" + twitch_username + "&"
                     slot = 1
 
@@ -418,14 +418,15 @@ def run():
                     win.addstr("\n")
                 win.refresh()
 
-                drfuji_query = drfuji_query[:-1]
-                drfuji_query = re.sub(" ", "-", drfuji_query)
-                drfuji_query = re.sub("-", "%2D", drfuji_query)
-                #print(drfuji_query)
-                conn = http.client.HTTPSConnection("everoddish.com")
-                conn.request("GET", drfuji_query)
-                resp = conn.getresponse()
-                conn.close()
+                if len(drfuji_query) > 0:
+                    drfuji_query = drfuji_query[:-1]
+                    drfuji_query = re.sub(" ", "-", drfuji_query)
+                    drfuji_query = re.sub("-", "%2D", drfuji_query)
+                    print(drfuji_query)
+                    conn = http.client.HTTPSConnection("everoddish.com")
+                    conn.request("GET", drfuji_query)
+                    resp = conn.getresponse()
+                    conn.close()
 
                 time.sleep(1)
         else:
