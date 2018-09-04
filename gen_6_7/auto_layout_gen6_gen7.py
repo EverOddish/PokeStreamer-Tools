@@ -2,6 +2,7 @@ import struct
 import curses
 import time
 import re
+import shutil
 import http.client
 
 from citra import Citra
@@ -13,6 +14,9 @@ USUM = 4
 
 # Change this value to your desired game
 current_game = ORAS
+
+# Change this value to False to disable auto-layout sprite file management
+manage_sprites = True
 
 # Change this value to your Twitch username to use the Dr. Fuji Twitch Extension
 twitch_username = 'EverOddish'
@@ -267,10 +271,13 @@ class Pokemon:
         if 0 != first_byte:
             self.raw_data = decrypt_data(encrypted_data)
         else:
-            raise ValueError()
+            self.raw_data = ""
 
     def species_num(self):
-        return struct.unpack("<H", self.raw_data[0x8:0xA])[0]
+        if len(self.raw_data) > 0:
+            return struct.unpack("<H", self.raw_data[0x8:0xA])[0]
+        else:
+            return 0
 
     def species(self):
         return species[self.species_num()]
@@ -392,10 +399,16 @@ def run():
     try:
         c = Citra()
         if c.is_connected():
+            first_loop = True
+            last_party = []
             while True:
                 win.clear()
                 win.addstr("PokeStreamer-Tools Auto-Layout Tool - Gen 6/7\n\n")
                 party = read_party(c)
+
+                if first_loop:
+                    last_party = party
+                    first_loop = False
 
                 drfuji_query = ""
                 if len(twitch_username) > 0 and "EverOddish" not in twitch_username:
@@ -409,24 +422,57 @@ def run():
                         drfuji_query += "&"
                         slot += 1
 
-                    win.addstr("Species: " + pkmn.species() + "  Ability: " + pkmn.ability() + "  Nature: " + pkmn.nature() + "\n")
-                    win.addstr("Moves: " + pkmn.move_1() + ", " + pkmn.move_2() + ", " + pkmn.move_3() + ", " + pkmn.move_4() + "\n")
-                    win.addstr("EVs: " + pkmn.ev_hp() + "/" + pkmn.ev_attack() + "/" + pkmn.ev_defense() + "/" + pkmn.ev_sp_attack() + "/" + pkmn.ev_sp_defense() + "/" + pkmn.ev_speed() + "  ")
-                    win.addstr("IVs: " + pkmn.iv_hp() + "/" + pkmn.iv_attack() + "/" + pkmn.iv_defense() + "/" + pkmn.iv_sp_attack() + "/" + pkmn.iv_sp_defense() + "/" + pkmn.iv_speed() + "\n")
-                    win.addstr("Stats: " + pkmn.stat_hp() + "/" + pkmn.stat_attack() + "/" + pkmn.stat_defense() + "/" + pkmn.stat_sp_attack() + "/" + pkmn.stat_sp_defense() + "/" + pkmn.stat_speed() + "\n")
-                    win.addstr("Level: " + pkmn.level() + "  Friendship: " + pkmn.friendship() + "\n")
-                    win.addstr("\n")
+                    if 0 != pkmn.species_num():
+                        win.addstr("Species: " + pkmn.species() + "  Ability: " + pkmn.ability() + "  Nature: " + pkmn.nature() + "\n")
+                        win.addstr("Moves: " + pkmn.move_1() + ", " + pkmn.move_2() + ", " + pkmn.move_3() + ", " + pkmn.move_4() + "\n")
+                        win.addstr("EVs: " + pkmn.ev_hp() + "/" + pkmn.ev_attack() + "/" + pkmn.ev_defense() + "/" + pkmn.ev_sp_attack() + "/" + pkmn.ev_sp_defense() + "/" + pkmn.ev_speed() + "  ")
+                        win.addstr("IVs: " + pkmn.iv_hp() + "/" + pkmn.iv_attack() + "/" + pkmn.iv_defense() + "/" + pkmn.iv_sp_attack() + "/" + pkmn.iv_sp_defense() + "/" + pkmn.iv_speed() + "\n")
+                        win.addstr("Stats: " + pkmn.stat_hp() + "/" + pkmn.stat_attack() + "/" + pkmn.stat_defense() + "/" + pkmn.stat_sp_attack() + "/" + pkmn.stat_sp_defense() + "/" + pkmn.stat_speed() + "\n")
+                        win.addstr("Level: " + pkmn.level() + "  Friendship: " + pkmn.friendship() + "\n")
+                        win.addstr("\n")
                 win.refresh()
 
                 if len(drfuji_query) > 0:
-                    drfuji_query = drfuji_query[:-1]
-                    drfuji_query = re.sub(" ", "-", drfuji_query)
-                    drfuji_query = re.sub("-", "%2D", drfuji_query)
-                    print(drfuji_query)
-                    conn = http.client.HTTPSConnection("everoddish.com")
-                    conn.request("GET", drfuji_query)
-                    resp = conn.getresponse()
-                    conn.close()
+                    try:
+                        drfuji_query = drfuji_query[:-1]
+                        drfuji_query = re.sub(" ", "-", drfuji_query)
+                        drfuji_query = re.sub("-", "%2D", drfuji_query)
+                        print(drfuji_query)
+                        conn = http.client.HTTPSConnection("everoddish.com")
+                        conn.request("GET", drfuji_query)
+                        resp = conn.getresponse()
+                        conn.close()
+                    except:
+                        pass
+
+                if manage_sprites:
+                    for i in range(6):
+                        if last_party[i].species_num() != party[i].species_num():
+                            #print(str(last_party[i].species_num()) + " -> " + str(party[i].species_num()))
+
+                            # First, try to copy by species number
+                            copied = False
+                            try:
+                                species_num = party[i].species_num()
+                                if 0 == species_num:
+                                    shutil.copyfile("000.png", "p" + str(i + 1) + ".png")
+                                    #print("000.png -> " + "p" + str(i + 1) + ".png")
+                                    copied = True
+                                else:
+                                    shutil.copyfile(str(species_num) + ".png", "p" + str(i + 1) + ".png")
+                                    #print(str(species_num) + ".png -> " + "p" + str(i + 1) + ".png")
+                                    copied = True
+                            except:
+                                pass
+                            if not copied:
+                                # If that failed, try to copy by species name
+                                try:
+                                    shutil.copyfile(party[i].species().lower() + ".png", "p" + str(i + 1) + ".png")
+                                    #print(party[i].species().lower() + ".png -> " + "p" + str(i + 1) + ".png")
+                                except:
+                                    pass
+
+                last_party = party
 
                 time.sleep(1)
         else:
