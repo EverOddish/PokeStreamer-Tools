@@ -3,11 +3,11 @@ A set of scripts and tools for Pokemon streamers
 
 ## Automatic Layout Updating
 
-If you're streaming a Pokemon game and like to display your current party on your layout, it can be tedious to modify which image files are displayed, while you are live. I've modified several existing tools to detect when in-game party slots change, which can then copy sprite image files on your computer automatically. Your streaming software can be configured to watch these files for modification, and update the layout accordingly. There is now also a "Soul Link" version that will update paired sprites at the same time.
+If you're streaming a Pokemon game and like to display your current party on your layout, it can be tedious to modify which image files are displayed, while you are live. I've modified several existing tools (and created new ones) to detect when in-game party slots change, which can then copy sprite image files on your computer automatically. Your streaming software can be configured to watch these files for modification, and update the layout accordingly. There is also a "Soul Link" version that will update paired sprites at the same time.
 
 ## Dr. Fuji Twitch Extension
 
-If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon real-time stats on your stream, you can use the appropriate script to send live data to the server that will be displayed to users. Currently, this is only supported for the Gen 4/5 script.
+If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon real-time stats on your stream, you can use the appropriate script to send live data to the server that will be displayed to users.
 
 ## SOS Counter Tool
 
@@ -16,10 +16,10 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
 ### Requirements
 
  * Windows operating system (in the case of VBA-RR or Desmume)
- * An emulator with Lua scripting support
+ * An emulator with Lua scripting support (in the case of Gen 3-5)
      * VBA-RR (for Gen 3 games)
      * Desmume (for Gen 4/Gen 5 games)
- * A version of Citra with Python scripting support
+ * A version of Citra with Python scripting support (in the case of Gen 6-7)
 
 ### VBA-RR Setup
 
@@ -63,6 +63,23 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  11. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
  12. The Lua script output window should display all slot changes in text form.
 
+### Citra Setup
+
+ 1. If not already installed, install the latest release of Python 3: https://www.python.org/downloads/
+ 2. Download the latest release of Citra: https://citra-emu.org/download/
+ 3. Verify that the following file exists: `<your Citra directory>/scripting/citra.py`
+ 4. Copy the correct script to `<your Citra directory>/scripting`
+      * `auto_layout_gen6_gen7.py` for auto-layout and/or the Dr. Fuji Twitch Extension
+      * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`) OR `<pokedex_number.png>` (for example, `25.png`)
+      * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
+      * The script expects a Pokeball image to be named `000.png`
+ 5. Edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
+      * If using the Dr. Fuji script, also set `twitch_username` to your Twitch username
+ 6. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
+ 7. Double-click the `auto_layout_gen6_gen7.py` file to run the script
+ 8. You should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically!
+ 9. The Python script output window should display all Pokemon party information in text form.
+
 ### FAQ
 
  * Where can I find Pokemon sprite files?
@@ -72,9 +89,9 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
      * http://pkmn.net/?action=content&page=viewpage&id=8644
      * https://www.pkparaiso.com/xy/sprites_pokemon.php
  * What about Gen 1 and Gen 2 games?
-     * These games are not supported
+     * These games are not supported yet
  * What about Pokemon in the PC boxes?
-     * These are not supported
+     * These are not supported yet
  * Why am I seeing strange behaviour? (missing Pokemon, fast switching, not updating properly)
      * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
  * What if I'm on an operating system whose emulator does not support Lua scripting? (for example, Desmume on Linux)
@@ -83,11 +100,15 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
      * Yes!
  * Do these work on fan-made games?
      * No!
+ * Can you send me ROMs or a place to find ROMs?
+     * No! ROM sharing is illegal. Buy the game legally, and dump it to a file.
+     * If using Citra, instructions are here: https://github.com/citra-emu/citra/wiki/Dumping-Game-Cartridges
  * What if my question isn't answered here?
      * Tweet [@EverOddish](https://twitter.com/everoddish)
 
 ### Credits
 
- * A huge thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work! http://forums.pokemonspeedruns.com/viewtopic.php?t=314
- * A huge thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
- * A huge thank you to the contributors at https://projectpokemon.org for their reverse engineering of Pokemon games
+ * Thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work http://forums.pokemonspeedruns.com/viewtopic.php?t=314
+ * Thank you to the contributors at https://projectpokemon.org for their reverse engineering of Pokemon games
+ * Thank you to the developers of Citra for reviewing and accepting my contribution of adding scripting support to Citra
+ * Thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
