@@ -78,7 +78,7 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
  6. If using auto-layout, edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
-      * If using the Dr. Fuji script, also set `twitch_username` to your Twitch username
+      * If using the Dr. Fuji Twitch Extension, also set `twitch_username` to your Twitch username
  7. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
  8. Double-click the `auto_layout_gen6_gen7.py` or `sos_counter.py` file (or both!) to run the script(s)
  9. If using auto-layout, you should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically! The Python script output window should display all Pokemon party information in text form.
