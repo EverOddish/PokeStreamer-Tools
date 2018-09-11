@@ -13,13 +13,15 @@ If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon r
 
 If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will display the current chain length. It will also write the value to a text file that can be monitored by streaming software and displayed on stream layouts. Note: This requires a version of Citra that supports Python scripting.
 
+## Setup Instructions
+
 ### Requirements
 
  * Windows operating system (in the case of VBA-RR or Desmume)
  * An emulator with Lua scripting support (in the case of Gen 3-5)
      * VBA-RR (for Gen 3 games)
      * Desmume (for Gen 4/Gen 5 games)
- * A version of Citra with Python scripting support (in the case of Gen 6-7)
+ * A version of Citra with Python scripting support (in the case of Gen 6-7), and Python 3
 
 ### VBA-RR Setup
 
@@ -70,17 +72,19 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  3. Verify that the following file exists: `<your Citra directory>/scripting/citra.py`
  4. Copy the correct script to `<your Citra directory>/scripting`
       * `auto_layout_gen6_gen7.py` for auto-layout and/or the Dr. Fuji Twitch Extension
+      * `sos_counter.py` for SOS chain length counting
+ 5. If using auto-layout, copy the sprite files to `<your Citra directory>/scripting`
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`) OR `<pokedex_number.png>` (for example, `25.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
- 5. Edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
+ 6. If using auto-layout, edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
       * If using the Dr. Fuji script, also set `twitch_username` to your Twitch username
- 6. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
- 7. Double-click the `auto_layout_gen6_gen7.py` file to run the script
- 8. You should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically!
- 9. The Python script output window should display all Pokemon party information in text form.
+ 7. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
+ 8. Double-click the `auto_layout_gen6_gen7.py` or `sos_counter.py` file (or both!) to run the script(s)
+ 9. If using auto-layout, you should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically! The Python script output window should display all Pokemon party information in text form.
+ 10. If using the SOS Counter, you should see a running count in the script window, and a file in the `scripting` directory called `sos_count.txt` that contains the running count.
 
-### FAQ
+## FAQ
 
  * Where can I find Pokemon sprite files?
      * https://drive.google.com/file/d/0Bx5dwDibVv9PNlJkWC0yajFrRms/view
@@ -106,7 +110,7 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  * What if my question isn't answered here?
      * Tweet [@EverOddish](https://twitter.com/everoddish)
 
-### Credits
+## Credits
 
  * Thank you to FractalFusion and MKDasher of Pokemon Speed Runs for their initial Lua script work http://forums.pokemonspeedruns.com/viewtopic.php?t=314
  * Thank you to the contributors at https://projectpokemon.org for their reverse engineering of Pokemon games
