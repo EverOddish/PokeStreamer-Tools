@@ -117,3 +117,4 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  * Thank you to the contributors at https://projectpokemon.org for their reverse engineering of Pokemon games
  * Thank you to the developers of Citra for reviewing and accepting my contribution of adding scripting support to Citra
  * Thank you to PokemonChallenges for helping me test all this! (Check him out at http://twitch.tv/PokemonChallenges)
+ * Thank you to Arochio for improvements to the Gen 6/7 scripts
