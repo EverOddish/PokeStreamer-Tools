@@ -1,4 +1,3 @@
-import curses
 import struct
 import time
 
@@ -20,23 +19,21 @@ def get_sos_count_address():
     return 0
 
 def read_sos_count(c):
+    value = 0
     read_address = get_sos_count_address()
     data = c.read_memory(read_address, 1)
     value = struct.unpack("B", data)[0]
     return value
 
 def run():
-    win = curses.initscr()
 
     try:
         c = Citra()
         if c.is_connected():
             while True:
                 value = read_sos_count(c)
-                win.clear()
-                win.addstr("PokeStreamer-Tools SOS Counter Tool\n\n")
-                win.addstr("SOS count: %d" % (value))
-                win.refresh()
+                print("PokeStreamer-Tools SOS Counter Tool\n\n")
+                print("SOS count: %d" % (value))
 
                 with open("sos_count.txt", "w") as f:
                     f.write(str(value))
@@ -44,8 +41,8 @@ def run():
                 time.sleep(1)
         else:
             print("Failed to connect to Citra RPC Server")
-    finally:
-        curses.endwin()
 
+    finally:
+        print("   ")
 if "__main__" == __name__:
     run()
