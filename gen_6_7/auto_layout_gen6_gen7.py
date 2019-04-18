@@ -364,7 +364,7 @@ class Pokemon7(Pokemon):
 
 def get_party_address():
     if XY == current_game:
-        return 0x8CE1CF8
+        return 0x8CE1CE8
     elif ORAS == current_game:
         return 0x8CF727C
     elif SM == current_game:
