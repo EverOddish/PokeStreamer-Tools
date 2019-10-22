@@ -5,10 +5,6 @@ A set of scripts and tools for Pokemon streamers
 
 If you're streaming a Pokemon game and like to display your current party on your layout, it can be tedious to modify which image files are displayed, while you are live. I've modified several existing tools (and created new ones) to detect when in-game party slots change, which can then copy sprite image files on your computer automatically. Your streaming software can be configured to watch these files for modification, and update the layout accordingly. There is also a "Soul Link" version that will update paired sprites at the same time.
 
-## Dr. Fuji Twitch Extension
-
-If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon real-time stats on your stream, you can use the appropriate script to send live data to the server that will be displayed to users.
-
 ## SOS Counter Tool
 
 If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will display the current chain length. It will also write the value to a text file that can be monitored by streaming software and displayed on stream layouts. Note: This requires a version of Citra that supports Python scripting.
@@ -51,7 +47,6 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  6. Copy the correct script to the same directory that contains your sprite image files
       * `auto_layout_gen4_gen5_tables.lua` for regular automatic layout update
       * `auto_layout_gen4_gen5_tables_soul_link.lua` for Soul Link automatic layout update (paired sprites)
-      * `auto_layout_gen4_gen5_tables_drfuji.lua` for sending data to the server for the Dr. Fuji Twitch Extension
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
@@ -72,14 +67,13 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  3. Download the latest release of Citra: https://citra-emu.org/download/
  4. Verify that the following file exists: `<your Citra directory>/scripting/citra.py`
  5. Copy the correct script to `<your Citra directory>/scripting`
-      * `auto_layout_gen6_gen7.py` for auto-layout and/or the Dr. Fuji Twitch Extension
+      * `auto_layout_gen6_gen7.py` for auto-layout
       * `sos_counter.py` for SOS chain length counting
  6. If using auto-layout, copy the sprite files to `<your Citra directory>/scripting`
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`) OR `<pokedex_number.png>` (for example, `25.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
  7. If using auto-layout, edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
-      * If using the Dr. Fuji Twitch Extension, also set `twitch_username` to your Twitch username
  8. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
  9. Double-click the `auto_layout_gen6_gen7.py` or `sos_counter.py` file (or both!) to run the script(s)
  10. If using auto-layout, you should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically! The Python script output window should display all Pokemon party information in text form.

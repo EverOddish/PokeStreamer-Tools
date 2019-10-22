@@ -18,9 +18,6 @@ current_game = USUM
 # Change this value to False to disable auto-layout sprite file management
 manage_sprites = True
 
-# Change this value to your Twitch username to use the Dr. Fuji Twitch Extension
-twitch_username = 'EverOddish'
-
 # -----------------------------------------------------------------------------
 
 species = [
@@ -410,17 +407,7 @@ def run():
                     last_party = party
                     first_loop = False
 
-                drfuji_query = ""
-                if len(twitch_username) > 0 and "EverOddish" not in twitch_username:
-                    drfuji_query = "/data/post.php?username=" + twitch_username + "&"
-                    slot = 1
-
                 for pkmn in party:
-
-                    if len(drfuji_query) > 0:
-                        drfuji_query += "p" + str(slot) + "=" + pkmn.species() + "_" + str(pkmn.species_num()) + "_" + pkmn.ability() + "_" + pkmn.nature() + "_" + pkmn.ev_hp() + "-" + pkmn.ev_attack() + "-" + pkmn.ev_defense() + "-" + pkmn.ev_sp_attack() + "-" + pkmn.ev_sp_defense() + "-" + pkmn.ev_speed() + "_" + pkmn.iv_hp() + "-" + pkmn.iv_attack() + "-" + pkmn.iv_defense() + "-" + pkmn.iv_sp_attack() + "-" + pkmn.iv_sp_defense() + "-" + pkmn.iv_speed() + "_" + pkmn.move_1() + "_" + pkmn.move_2() + "_" + pkmn.move_3() + "_" + pkmn.move_4() + "_" + pkmn.level() + "_" + pkmn.friendship()
-                        drfuji_query += "&"
-                        slot += 1
 
                     if 0 != pkmn.species_num():
                         print("Species: " + pkmn.species() + "  Ability: " + pkmn.ability() + "  Nature: " + pkmn.nature() + "\n")
@@ -430,19 +417,6 @@ def run():
                         print("Stats: " + pkmn.stat_hp() + "/" + pkmn.stat_attack() + "/" + pkmn.stat_defense() + "/" + pkmn.stat_sp_attack() + "/" + pkmn.stat_sp_defense() + "/" + pkmn.stat_speed() + "\n")
                         print("Level: " + pkmn.level() + "  Friendship: " + pkmn.friendship() + "\n")
                         print("\n")
-
-                if len(drfuji_query) > 0:
-                    try:
-                        drfuji_query = drfuji_query[:-1]
-                        drfuji_query = re.sub(" ", "-", drfuji_query)
-                        drfuji_query = re.sub("-", "%2D", drfuji_query)
-                        print(drfuji_query)
-                        conn = http.client.HTTPSConnection("everoddish.com")
-                        conn.request("GET", drfuji_query)
-                        resp = conn.getresponse()
-                        conn.close()
-                    except:
-                        pass
 
                 if manage_sprites:
                     for i in range(6):
