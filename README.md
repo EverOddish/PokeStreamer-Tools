@@ -5,10 +5,6 @@ A set of scripts and tools for Pokemon streamers
 
 If you're streaming a Pokemon game and like to display your current party on your layout, it can be tedious to modify which image files are displayed, while you are live. I've modified several existing tools (and created new ones) to detect when in-game party slots change, which can then copy sprite image files on your computer automatically. Your streaming software can be configured to watch these files for modification, and update the layout accordingly. There is also a "Soul Link" version that will update paired sprites at the same time.
 
-## Dr. Fuji Twitch Extension
-
-If you would like to use the Dr. Fuji Twitch Extension to display your Pokemon real-time stats on your stream, you can use the appropriate script to send live data to the server that will be displayed to users.
-
 ## SOS Counter Tool
 
 If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will display the current chain length. It will also write the value to a text file that can be monitored by streaming software and displayed on stream layouts. Note: This requires a version of Citra that supports Python scripting.
@@ -51,7 +47,6 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  6. Copy the correct script to the same directory that contains your sprite image files
       * `auto_layout_gen4_gen5_tables.lua` for regular automatic layout update
       * `auto_layout_gen4_gen5_tables_soul_link.lua` for Soul Link automatic layout update (paired sprites)
-      * `auto_layout_gen4_gen5_tables_drfuji.lua` for sending data to the server for the Dr. Fuji Twitch Extension
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
