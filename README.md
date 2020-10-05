@@ -68,22 +68,21 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
 ### Citra Setup
 
  1. If not already installed, install the latest release of Python 3: https://www.python.org/downloads/
- 2. Open a command prompt and run `pip install pyzmq`
- 3. Download the latest release of Citra: https://citra-emu.org/download/
- 4. Verify that the following file exists: `<your Citra directory>/scripting/citra.py`
- 5. Copy the correct script to `<your Citra directory>/scripting`
-      * `auto_layout_gen6_gen7.py` for auto-layout and/or the Dr. Fuji Twitch Extension
+ 2. Download the latest release of Citra: https://citra-emu.org/download/
+ 3. Verify that the following file exists: `<your Citra directory>/scripting/citra.py`
+      * Usually your Citra directory resides under `C:\Users\Name\AppData\Local\Citra\nightly-mingw`
+ 4. Copy the correct script to `<your Citra directory>/scripting`
+      * `auto_layout_gen6_gen7.py` for auto-layout
       * `sos_counter.py` for SOS chain length counting
- 6. If using auto-layout, copy the sprite files to `<your Citra directory>/scripting`
+ 5. If using auto-layout, copy the sprite files to `<your Citra directory>/scripting`
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`) OR `<pokedex_number.png>` (for example, `25.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
- 7. If using auto-layout, edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
-      * If using the Dr. Fuji Twitch Extension, also set `twitch_username` to your Twitch username
- 8. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
- 9. Double-click the `auto_layout_gen6_gen7.py` or `sos_counter.py` file (or both!) to run the script(s)
- 10. If using auto-layout, you should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update automatically! The Python script output window should display all Pokemon party information in text form.
- 11. If using the SOS Counter, you should see a running count in the script window, and a file in the `scripting` directory called `sos_count.txt` that contains the running count.
+ 6. If using auto-layout, edit the first line of the `auto_layout_gen6_gen7.py` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `current_game` to the appropriate value, as described in the file
+ 7. Open Citra and your Gen 6 or Gen 7 Pokemon ROM, and load your save file
+ 8. Double-click the `auto_layout_gen6_gen7.py` or `sos_counter.py` file (or both!) to run the script(s)
+ 9. If using auto-layout, you should now be able to deposit/withdraw Pokemon from the PC and catch Pokemon to see your party images update, whenever you re-run the script. The Python script output window should display all Pokemon party information in text form. To update the sprites again, just press Enter.
+ 10. If using the SOS Counter, you should see a running count in the script window, and a file in the `scripting` directory called `sos_count.txt` that contains the running count.
 
 ## FAQ
 

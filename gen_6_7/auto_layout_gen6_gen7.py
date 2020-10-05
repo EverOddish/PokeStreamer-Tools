@@ -13,7 +13,7 @@ SM = 3
 USUM = 4
 
 # Change this value to your desired game
-current_game = USUM
+current_game = XY
 
 # Change this value to False to disable auto-layout sprite file management
 manage_sprites = True
