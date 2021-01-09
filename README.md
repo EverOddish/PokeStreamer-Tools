@@ -45,14 +45,14 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  4. Extract `lua5.1.dll` from the .zip file to the same folder where your `DeSmuME_0.9.11_x86.exe` or `DeSmuME_0.9.11_x64.exe` is
  5. Rename `lua5.1.dll` to `lua51.dll`
  6. Copy the correct script to the same directory that contains your sprite image files
-      * `auto_layout_gen4_gen5_tables.lua` for regular automatic layout update
-      * `auto_layout_gen4_gen5_tables_soul_link.lua` for Soul Link automatic layout update (paired sprites)
+      * `auto_layout_gen4_gen5.lua` for regular automatic layout update
+      * `auto_layout_gen4_gen5_soul_link.lua` for Soul Link automatic layout update (paired sprites)
+      * Copy `auto_layout_gen4_gen5_tables.lua` to the same directory
       * The script expects sprite files to be named as follows: `<pokemon_name>.png` (for example, `pikachu.png`)
       * The script expects party slot image files (that are monitored by OBS) to be named as follows: `p<slot_number>.png` (for example, `p1.png`)
       * The script expects a Pokeball image to be named `000.png`
       * The Soul Link version of the script expects `soul_links.txt` containing which Pokemon are linked (see example file)
  7. Edit the first line of the chosen `.lua` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `game` to the appropriate value, as described in the file
-      * If using the Dr. Fuji script, also set `username` to your Twitch username
  8. Open Desmume and your Pokemon ROM, and load your save file
  9. In Desmume, open Tools > Lua Scripting > New Lua Script Window...
  10. Click Browse... and locate `auto_layout_gen4_gen5.lua` (or other chosen version of the script) on your computer, open it, and click Run
@@ -104,6 +104,7 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
      * If using Citra, instructions are here: https://github.com/citra-emu/citra/wiki/Dumping-Game-Cartridges
  * What if my question isn't answered here?
      * Tweet [@EverOddish](https://twitter.com/everoddish)
+     * Please make every effort to follow the steps outlined above before contacting me for help. I have limited free time to spend troubleshooting.
 
 ## Credits
 
