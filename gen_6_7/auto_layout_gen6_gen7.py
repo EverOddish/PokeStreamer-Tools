@@ -425,26 +425,19 @@ def run():
 
                             # First, try to copy by species number
                             copied = False
-                            try:
-                                species_num = party[i].species_num()
-                                if 0 == species_num:
-                                    shutil.copyfile("000.png", "p" + str(i + 1) + ".png")
-                                    print("000.png -> " + "p" + str(i + 1) + ".png")
-                                    copied = True
-                                else:
-                                    shutil.copyfile(str(species_num) + ".png", "p" + str(i + 1) + ".png")
-                                    print(str(species_num) + ".png -> " + "p" + str(i + 1) + ".png")
-                                    copied = True
-                            except:
-                                pass
+                            species_num = party[i].species_num()
+                            if 0 == species_num:
+                                shutil.copyfile("000.png", "p" + str(i + 1) + ".png")
+                                print("000.png -> " + "p" + str(i + 1) + ".png")
+                                copied = True
+                            else:
+                                shutil.copyfile(str(species_num) + ".png", "p" + str(i + 1) + ".png")
+                                print(str(species_num) + ".png -> " + "p" + str(i + 1) + ".png")
+                                copied = True
                             if not copied:
                                 # If that failed, try to copy by species name
-                                try:
-                                    shutil.copyfile(party[i].species().lower() + ".png", "p" + str(i + 1) + ".png")
-                                    print(party[i].species().lower() + ".png -> " + "p" + str(i + 1) + ".png")
-                                except:
-                                    print("ERROR") 
-                                    pass
+                                shutil.copyfile(party[i].species().lower() + ".png", "p" + str(i + 1) + ".png")
+                                print(party[i].species().lower() + ".png -> " + "p" + str(i + 1) + ".png")
 
                 last_party = party
                 try:
