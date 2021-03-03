@@ -1,5 +1,7 @@
 # PokeStreamer-Tools
-A set of scripts and tools for Pokemon streamers
+A set of scripts and tools for Pokemon streamers.
+
+Before you start, please consider using Pokelink (no affiliation with EverOddish), as it has more features and more resources behind it. https://twitter.com/PokelinkApp
 
 ## Automatic Layout Updating
 
@@ -31,7 +33,7 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
       * Note: The `auto_layout_gen3_tables.lua` file still needs to exist in the same directory, but you do not need to open it in VBA-RR
  5. Open VBA-RR and your Pokemon ROM, and load your save file
  6. In VBA-RR, open Tools > Lua Scripting > New Lua Script Window...
- 7. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run
+ 7. Click Browse... and locate `auto_layout_gen3.lua` on your computer, open it, and click Run. If you see "script returned but is still running registered fuctions", this is normal and expected.
  8. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
  9. The Lua script output window should display all slot changes in text form. As a bonus, you can press "Q" to see Pokemon EV/IV values in your party
 
@@ -55,7 +57,7 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  7. Edit the first line of the chosen `.lua` file from this repository with your favourite text editor (you can right-click the file and Open With > Notepad) and set `game` to the appropriate value, as described in the file
  8. Open Desmume and your Pokemon ROM, and load your save file
  9. In Desmume, open Tools > Lua Scripting > New Lua Script Window...
- 10. Click Browse... and locate `auto_layout_gen4_gen5.lua` (or other chosen version of the script) on your computer, open it, and click Run
+ 10. Click Browse... and locate `auto_layout_gen4_gen5.lua` (or other chosen version of the script) on your computer, open it, and click Run. If you see "script returned but is still running registered fuctions", this is normal and expected.
       * Note: The `auto_layout_gen4_gen5_tables.lua` file still needs to exist in the same directory, but you do not need to open it in Desmume
  11. You should now be able to switch party slots, deposit/withdraw Pokemon from the PC, and catch Pokemon to see your party images update automatically!
  12. The Lua script output window should display all slot changes in text form.
@@ -87,16 +89,18 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
      * https://veekun.com/dex/downloads
      * http://pkmn.net/?action=content&page=viewpage&id=8644
      * https://www.pkparaiso.com/xy/sprites_pokemon.php
+ * Can I resize the sprite files automatically?
+     * This is outside the scope of what the scripts can do. You can try using a mass-resizer tool like Flexxi.
  * What about Gen 1 and Gen 2 games?
-     * These games are not supported yet
+     * These games are not supported
  * What about Pokemon in the PC boxes?
-     * These are not supported yet
+     * These are not supported
  * Why am I seeing strange behaviour? (missing Pokemon, fast switching, not updating properly)
      * Reading game memory directly is not always perfect. Try switching party members around, to see if the issue is corrected
  * What if I'm on an operating system whose emulator does not support Lua scripting? (for example, Desmume on Linux)
      * I'm sorry, you'll have to ask the maintainers of that emulator!
  * Do these scripts work with ROM hacks, such as Drayano's Storm Silver, etc.?
-     * Yes!
+     * Yes! The scripts work on ROM hacks that have not been heavily modified.
  * Do these work on fan-made games?
      * No!
  * Can you send me ROMs or a place to find ROMs?
