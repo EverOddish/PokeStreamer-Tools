@@ -1,7 +1,11 @@
+# NO LONGER SUPPORTED
+
+This project has been decommissioned as of 2022-01-03 and is no longer supported or maintained. I want to devote my time to other projects, and PokeLink (no affiliation with me) is a better alternative to PokeStreamer-Tools. Please visit https://twitter.com/PokelinkApp for more details.
+
+Thank you to all those that used PokeStreamer-Tools in the past.
+
 # PokeStreamer-Tools
 A set of scripts and tools for Pokemon streamers.
-
-Before you start, please consider using Pokelink (no affiliation with EverOddish), as it has more features and more resources behind it. https://twitter.com/PokelinkApp
 
 ## Automatic Layout Updating
 
@@ -106,9 +110,6 @@ If you're doing SOS chains in Sun/Moon or Ultra Sun/Ultra Moon, this tool will d
  * Can you send me ROMs or a place to find ROMs?
      * No! ROM sharing is illegal. Buy the game legally, and dump it to a file.
      * If using Citra, instructions are here: https://github.com/citra-emu/citra/wiki/Dumping-Game-Cartridges
- * What if my question isn't answered here?
-     * Tweet [@EverOddish](https://twitter.com/everoddish)
-     * Please make every effort to follow the steps outlined above before contacting me for help. I have limited free time to spend troubleshooting.
 
 ## Credits
 
